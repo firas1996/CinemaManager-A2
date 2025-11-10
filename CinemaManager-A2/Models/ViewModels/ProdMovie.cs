@@ -3,7 +3,7 @@
     public class ProdMovie
     {
         public string mTitle;
-        public string mGentre;
+        public string mGenre;
         public string pName;
         public string pNat;
     }

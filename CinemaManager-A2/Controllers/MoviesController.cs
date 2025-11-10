@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using CinemaManager_A2.Models.Cinema;
+using CinemaManager_A2.Models.ViewModels;
 
 namespace CinemaManager_A2.Controllers
 {
@@ -30,6 +31,33 @@ namespace CinemaManager_A2.Controllers
             var cinemaDbA2Context = _context.Movies.Include(m => m.Producer);
             return View(await cinemaDbA2Context.ToListAsync());
         }
+
+
+
+
+
+        public async Task<IActionResult> MoviesAndTheirProds_UsingModel()
+        {
+            var producers = _context.Producers.ToList();
+            var movies = _context.Movies.ToList();
+            var query = from m in movies
+                        join p in producers on m.ProducerId equals p.Id
+                        select new ProdMovie
+                        {
+                            mTitle = m.Title,
+                            mGenre = m.Genre,
+                            pName = p.Name,
+                            pNat = p.Nationality
+                        };
+            return View(query.ToList());
+        }
+
+
+
+
+
+
+
 
         // GET: Movies/Details/5
         public async Task<IActionResult> Details(int? id)

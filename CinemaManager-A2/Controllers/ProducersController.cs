@@ -24,6 +24,17 @@ namespace CinemaManager_A2.Controllers
             return View(_context.Producers.ToList());
         }
 
+
+        public IActionResult MyMovies (int id)
+        {
+            //var movies = _context.Movies.ToList();
+            //var querry = from movie in movies where movie.ProducerId == id
+            //             select movie;
+            var querry = _context.Movies.Where(m => m.ProducerId == id);
+
+            return View(querry.ToList());
+        }
+
         // GET: ProducersController/Details/5
         public ActionResult Details(int id)
         {
