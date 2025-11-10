@@ -52,6 +52,16 @@ namespace CinemaManager_A2.Controllers
             return View(query.ToList());
         }
 
+        public async Task<IActionResult> SearchByTitle(string title)
+        {
+            if (String.IsNullOrEmpty(title))
+            {
+                return View(_context.Movies.ToList());
+            }
+            var querry = _context.Movies.Where(m => m.Title.Contains(title)).ToList();
+            return View(querry);
+        }
+
 
 
 

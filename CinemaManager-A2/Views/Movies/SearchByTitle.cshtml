@@ -1,15 +1,20 @@
 ﻿@model IEnumerable<CinemaManager_A2.Models.Cinema.Movie>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "SearchByTitle";
 }
 
-<h1>Index</h1>
+<h1>SearchByTitle</h1>
+
+@using (Html.BeginForm())
+{
+    <label>Title</label>
+    <input type="text" name="title" />
+    <input type="submit" value="Find" />
+}
 
 <p>
     <a asp-action="Create">Create New</a>
-    <a asp-action="MoviesAndTheirProds">MoviesAndTheirProds</a>
-    <a asp-action="SearchByTitle">SearchByTitle</a>
 </p>
 <table class="table">
     <thead>
