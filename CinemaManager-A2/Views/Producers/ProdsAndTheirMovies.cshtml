@@ -1,14 +1,13 @@
 ﻿@model IEnumerable<CinemaManager_A2.Models.Cinema.Producer>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "ProdsAndTheirMovies";
 }
 
-<h1>Index</h1>
+<h1>ProdsAndTheirMovies</h1>
 
 <p>
     <a asp-action="Create">Create New</a>
-    <a asp-action="ProdsAndTheirMovies">ProdsAndTheirMovies</a>
 </p>
 <table class="table">
     <thead>
@@ -20,7 +19,10 @@
                 @Html.DisplayNameFor(model => model.Nationality)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Email)
+                Movie Title
+            </th>
+            <th>
+                Movie Genre
             </th>
             <th></th>
         </tr>
@@ -35,8 +37,17 @@
                 @Html.DisplayFor(modelItem => item.Nationality)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Email)
+                    @foreach(var m in item.Movies)
+                    {
+                        @Html.DisplayFor(modelItem => m.Title)<br />
+                    }
             </td>
+                <td>
+                    @foreach (var m in item.Movies)
+                    {
+                        @Html.DisplayFor(modelItem => m.Genre)<br />
+                    }
+                </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.Id">Details</a> |

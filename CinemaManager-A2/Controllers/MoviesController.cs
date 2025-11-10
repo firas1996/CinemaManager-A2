@@ -25,6 +25,12 @@ namespace CinemaManager_A2.Controllers
             return View(await cinemaDbA2Context.ToListAsync());
         }
 
+        public async Task<IActionResult> MoviesAndTheirProds()
+        {
+            var cinemaDbA2Context = _context.Movies.Include(m => m.Producer);
+            return View(await cinemaDbA2Context.ToListAsync());
+        }
+
         // GET: Movies/Details/5
         public async Task<IActionResult> Details(int? id)
         {
