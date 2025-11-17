@@ -1,23 +1,33 @@
 ﻿@model IEnumerable<CinemaManager_A2.Models.Cinema.Movie>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "SearchByCritaire";
 }
 
-<h1>Index</h1>
-@if (false)
+<h1>SearchByCritaire</h1>
+
+@using (Html.BeginForm())
 {
-    <h1>hello</h1>
-}
-else
-{
-<h1>World</h1>
+    <label>Critaire</label>
+    <select name="critaire">
+        <option value="Genre">Genre</option>
+        <option value="Title">Title</option>
+    </select>
+    <label>Genre</label>
+    <select name="genre">
+        <option value="All">All</option>
+        @foreach (var item in ViewBag.Genres)
+        {
+            <option value=@item>@item</option>
+        }
+    </select>
+    <label>Title</label>
+    <input type="text" name="title" />
+    <input type="submit" value="Find" />
 }
 
 <p>
     <a asp-action="Create">Create New</a>
-    <a asp-action="MoviesAndTheirProds">MoviesAndTheirProds</a>
-    <a asp-action="SearchByTitle">SearchByTitle</a>
 </p>
 <table class="table">
     <thead>

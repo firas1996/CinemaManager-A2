@@ -73,6 +73,23 @@ namespace CinemaManager_A2.Controllers
             return View(movies.ToList());
         }
 
+        public async Task<IActionResult> SearchByCritaire(string critaire , string genre, string title)
+        {
+            var movies = _context.Movies.AsQueryable();
+            ViewBag.Genres = movies.Select(m => m.Genre).Distinct().ToList();
+            if(critaire =="Title" && !String.IsNullOrEmpty(title))
+            {
+                movies = movies.Where(m => m.Title.Contains(title));
+            }else if(critaire == "Genre")
+            {
+            if (genre != "All")
+            {
+                movies = movies.Where(m => m.Genre == genre);
+            }
+            }
+            return View(movies.ToList());
+        }
+
 
 
 
